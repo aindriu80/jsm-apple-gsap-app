@@ -68,8 +68,8 @@ const VideoCarousel = () => {
                 window.innerWidth < 760
                   ? "10vw" // mobile
                   : window.innerWidth < 1200
-                  ? "10vw" // tablet
-                  : "4vw", // laptop
+                    ? "10vw" // tablet
+                    : "4vw", // laptop
             });
 
             // set the background color of the progress bar
@@ -100,8 +100,8 @@ const VideoCarousel = () => {
       // update the progress bar
       const animUpdate = () => {
         anim.progress(
-          videoRef.current[videoId].currentTime /
-            hightlightsSlides[videoId].videoDuration
+          videoRef.current[videoId].currentProgress /
+            hightlightsSlides[videoId].videoDuration,
         );
       };
 
@@ -158,9 +158,9 @@ const VideoCarousel = () => {
     <>
       <div className="flex items-center">
         {hightlightsSlides.map((list, i) => (
-          <div key={list.id} id="slider" className="sm:pr-20 pr-10">
+          <div key={list.id} id="slider" className="pr-10 sm:pr-20">
             <div className="video-carousel_container">
-              <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
+              <div className="w-full h-full overflow-hidden bg-black flex-center rounded-3xl">
                 <video
                   id="video"
                   playsInline={true}
@@ -186,7 +186,7 @@ const VideoCarousel = () => {
 
               <div className="absolute top-12 left-[5%] z-10">
                 {list.textLists.map((text, i) => (
-                  <p key={i} className="md:text-2xl text-xl font-medium">
+                  <p key={i} className="text-xl font-medium md:text-2xl">
                     {text}
                   </p>
                 ))}
@@ -196,16 +196,16 @@ const VideoCarousel = () => {
         ))}
       </div>
 
-      <div className="relative flex-center mt-10">
-        <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
+      <div className="relative mt-10 flex-center">
+        <div className="py-5 bg-gray-300 rounded-full flex-center px-7 backdrop-blur">
           {videoRef.current.map((_, i) => (
             <span
               key={i}
-              className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+              className="relative w-3 h-3 mx-2 bg-gray-200 rounded-full cursor-pointer"
               ref={(el) => (videoDivRef.current[i] = el)}
             >
               <span
-                className="absolute h-full w-full rounded-full"
+                className="absolute w-full h-full rounded-full"
                 ref={(el) => (videoSpanRef.current[i] = el)}
               />
             </span>
@@ -220,8 +220,8 @@ const VideoCarousel = () => {
               isLastVideo
                 ? () => handleProcess("video-reset")
                 : !isPlaying
-                ? () => handleProcess("play")
-                : () => handleProcess("pause")
+                  ? () => handleProcess("play")
+                  : () => handleProcess("pause")
             }
           />
         </button>
