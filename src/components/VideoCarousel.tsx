@@ -99,10 +99,15 @@ const VideoCarousel = () => {
 
       // update the progress bar
       const animUpdate = () => {
-        anim.progress(
-          videoRef.current[videoId].currentProgress /
-            hightlightsSlides[videoId].videoDuration,
-        );
+        const videoElement = videoRef.current[videoId];
+        if (videoElement) {
+          anim.progress(
+            videoRef.current[videoId].currentTime /
+              hightlightsSlides[videoId].videoDuration,
+          );
+        } else {
+          console.log("Video element is null");
+        }
       };
 
       if (isPlaying) {
@@ -173,7 +178,7 @@ const VideoCarousel = () => {
                   onEnded={() =>
                     i !== 3
                       ? handleProcess("video-end", i)
-                      : handleProcess("video-last")
+                      : handleProcess("video-last", "")
                   }
                   onPlay={() =>
                     setVideo((pre) => ({ ...pre, isPlaying: true }))
