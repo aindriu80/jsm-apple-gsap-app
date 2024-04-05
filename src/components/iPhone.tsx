@@ -88,7 +88,7 @@ type ContextType = Record<
 >;
 
 function Model(props) {
-  const { nodes, materials } = useGLTF("/public/models/scene.glb");
+  const { nodes, materials } = useGLTF("/models/scene.glb");
 
   const texture = useTexture(props.item.img);
 
