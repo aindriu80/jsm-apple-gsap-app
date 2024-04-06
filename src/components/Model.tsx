@@ -33,14 +33,14 @@ const Model = () => {
 
   useEffect(() => {
     if (size === "large") {
-      animateWithGsapTimeline(tl, small, largeRotation, "#view1", "#view2", {
+      animateWithGsapTimeline(tl, small, smallRotation, "#view1", "#view2", {
         transform: "translateX(-100%)",
         duration: 2,
       });
     }
 
     if (size === "small") {
-      animateWithGsapTimeline(tl, large, smallRotation, "#view2", "#view1", {
+      animateWithGsapTimeline(tl, large, largeRotation, "#view2", "#view1", {
         transform: "translateX(0)",
         duration: 2,
       });
@@ -70,7 +70,7 @@ const Model = () => {
             />
 
             <ModelView
-              index={1}
+              index={2}
               groupRef={large}
               gsapType="view2"
               controlRef={cameraControlLarge}
@@ -84,6 +84,7 @@ const Model = () => {
               style={{
                 position: "fixed",
                 top: 0,
+                bottom: 0,
                 left: 0,
                 right: 0,
                 overflow: "hidden",
